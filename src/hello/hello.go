@@ -2,29 +2,31 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
-
 )
 
 func main() {
 	exibirIntro()
 
-	exibirOpcoes()
+	for {
+		exibirOpcoes()
 
-	opcao := lerComando()
+		opcao := lerComando()
 
-	switch opcao {
-	case 1:
-		fmt.Println("Monitorando...")
-	case 2:
-		fmt.Println("Exibindo Logs...")
-	case 0:
-		fmt.Println("Saindo do Programa.")
-	default:
-		fmt.Println("Comando inválido!")
-		os.Exit(0)
+		switch opcao {
+		case 1:
+			iniciarMonitoramento()
+		case 2:
+			fmt.Println("Exibindo Logs...")
+		case 0:
+			fmt.Println("Saindo do Programa.")
+			os.Exit(0)
+		default:
+			fmt.Println("Comando inválido!")
+		}
+		println()
 	}
-	println()
 }
 
 func exibirIntro() {
@@ -46,5 +48,21 @@ func exibirOpcoes() {
 func lerComando() int8 {
 	var opcao int8
 	fmt.Scan(&opcao)
+	println()
+	println()
 	return opcao
+}
+
+func iniciarMonitoramento() {
+	fmt.Println("Monitorando...")
+	println()
+
+	site := "https://www.alura.com.br/"
+	resp, _ := http.Get(site)
+
+	if resp.StatusCode == 200 {
+		fmt.Println("Site:", site, "-> Carregado com sucesso! StatusCode:", resp.StatusCode)
+	} else {
+		fmt.Println("Site:", site, "-> Fora do ar! StatusCode:", resp.StatusCode)
+	}
 }

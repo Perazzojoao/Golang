@@ -22,6 +22,8 @@
   
   3. <`nome`> := <`valor`> -> Inferência de var e tipo.
 
+#### Obs: Variáveis inicializadas sem valor assumem um valor padrão para seu próprio tipo.
+
 ## Tipos
 - **string**
 
@@ -33,6 +35,15 @@
 
 #### **OBS-1:** adicionar `u` no início do tipo exclui números negativos.
 #### **OBS-2:** adicionar `[]` no início do tipo implica em um array do mesmo tipo.
+
+### Valor padrão de cada tipo
+- **string:** `" "`
+
+- **int:** `0`
+
+- **float:** `0`
+
+- **bool:** `false`
 
 ## print no console
 **Comando:** `println()` ou `fmt.Println()`
@@ -64,4 +75,4 @@ Na linguagem go não existe o comando `while`. Ao invés disso, utilizamos o `fo
 
   }
 ```
-Sendo assim, geramos um loop infinito. Para interromper o programa: `os.Exit(<código>)` -> `0` para bem sucedido e `-1` para mau sucedido.
+Sendo assim, geramos um loop infinito. Para interromper o programa: `os.Exit(<código>)` -> `0` para bem sucedido ou `-1` para mau sucedido.

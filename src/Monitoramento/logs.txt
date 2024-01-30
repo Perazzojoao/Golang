@@ -1,0 +1,36 @@
+30/01/2024 15:42:01 - Site 1: https://random-status-code.herokuapp.com -> Site offline
+30/01/2024 15:42:01 - Site 2: https://www.alura.com.br -> Site online
+30/01/2024 15:42:03 - Site 3: https://www.caelum.com.br -> Site online
+30/01/2024 15:42:03 - Site 4: https://www.g1.com.br -> Site online
+30/01/2024 15:42:04 - Site 5: https://www.unipe.com.br -> Site online
+
+30/01/2024 15:42:10 - Site 1: https://random-status-code.herokuapp.com -> Site offline
+30/01/2024 15:42:10 - Site 2: https://www.alura.com.br -> Site online
+30/01/2024 15:42:11 - Site 3: https://www.caelum.com.br -> Site online
+30/01/2024 15:42:11 - Site 4: https://www.g1.com.br -> Site online
+30/01/2024 15:42:11 - Site 5: https://www.unipe.com.br -> Site online
+
+30/01/2024 15:42:17 - Site 1: https://random-status-code.herokuapp.com -> Site offline
+30/01/2024 15:42:17 - Site 2: https://www.alura.com.br -> Site online
+30/01/2024 15:42:18 - Site 3: https://www.caelum.com.br -> Site online
+30/01/2024 15:42:18 - Site 4: https://www.g1.com.br -> Site online
+30/01/2024 15:42:18 - Site 5: https://www.unipe.com.br -> Site online
+
+30/01/2024 15:44:31 - Site 1: https://random-status-code.herokuapp.com -> Site offline
+30/01/2024 15:44:32 - Site 2: https://www.alura.com.br -> Site online
+30/01/2024 15:44:33 - Site 3: https://www.caelum.com.br -> Site online
+30/01/2024 15:44:34 - Site 4: https://www.g1.com.br -> Site online
+30/01/2024 15:44:35 - Site 5: https://www.unipe.com.br -> Site online
+
+30/01/2024 15:44:41 - Site 1: https://random-status-code.herokuapp.com -> Site offline
+30/01/2024 15:44:41 - Site 2: https://www.alura.com.br -> Site online
+30/01/2024 15:44:42 - Site 3: https://www.caelum.com.br -> Site online
+30/01/2024 15:44:42 - Site 4: https://www.g1.com.br -> Site online
+30/01/2024 15:44:42 - Site 5: https://www.unipe.com.br -> Site online
+
+30/01/2024 15:44:48 - Site 1: https://random-status-code.herokuapp.com -> Site offline
+30/01/2024 15:44:48 - Site 2: https://www.alura.com.br -> Site online
+30/01/2024 15:44:49 - Site 3: https://www.caelum.com.br -> Site online
+30/01/2024 15:44:49 - Site 4: https://www.g1.com.br -> Site online
+30/01/2024 15:44:49 - Site 5: https://www.unipe.com.br -> Site online
+

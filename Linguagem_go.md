@@ -153,6 +153,61 @@ O GO possúi um pacote padrão para realizar requisições http: `http`
 
 A resposta contém todas as informações recebidas pela requisição, sendo possível acessá-las.
 
+## Structs (Classes)
+Structs são equivalente a classes. Criamos structs para adicionar variáveis e seus respectivos tipos à um objeto.
+
+### Criação
+**Sintaxe:** `type` `<nome>` `struct` {. . .} 
+
+**Ex:**
+
+```
+  type ContaCorrente struct {
+    titular       string
+    numeroAgencia int
+    numeroConta   int
+    saldo         float64
+  }
+```
+
+### Uso
+Criamos um objeto a partir de uma struc utilizando o comando: `<nome_struct> {...}`
+
+#### Há duas formas de atribuir valores a um struct
+1. **Forma completa:**
+    ```
+      exemplo := exemploStruct {
+        var1:  valor1,
+        var2:  valor2,
+        var3:  valor3,
+      } 
+    ```
+2. **Forma reduzida:**
+
+        exemplo := exemploStruct {valor1, valor2, valor3}
+
+**Obs:** `Na forma reduzida`, a atribuiçao de valores para `TODAS` as variáveis é `OBRIGATÓRIA`, enquanto na forma completa valores omitidos serão inicializados com o valor padrão do seu próprio tipo.
+
+**Ex:**
+
+```
+  type ContaCorrente struct {
+    titular       string
+    numeroAgencia int
+    numeroConta   int
+    saldo         float64
+  }
+
+  func main() {
+    cliente01 := ContaCorrente{
+      titular:       "João Victor",
+      saldo:         152.34,
+    }
+
+    cliente02 := ContaCorrente{"Guilherme", 442, 3302, 3242.52}
+  }
+```
+
 ## Ler arquivos txt
 
 Existem mais de uma forma de ler arquivos txt. Cada método resulta em diferentes possibilidades de manipulação.

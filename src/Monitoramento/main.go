@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-
 )
 
 func main() {
@@ -21,13 +20,14 @@ func main() {
 		case 2:
 			fmt.Println("Exibindo Logs...")
 		case 0:
-			fmt.Println("Saindo do Programa.")
+			fmt.Println("Saindo do Programa...")
 			os.Exit(0)
 		default:
 			fmt.Println("Comando inválido!")
 		}
 		println()
 	}
+
 }
 
 func exibirIntro() {
@@ -58,12 +58,18 @@ func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
 	println()
 
-	site := "https://www.alura.com.br/"
-	resp, _ := http.Get(site)
+	sites := []string{"https://random-status-code.herokuapp.com/",
+		"https://www.alura.com.br", "https://www.caelum.com.br"}
 
-	if resp.StatusCode == 200 {
-		fmt.Println("Site:", site, "-> Carregado com sucesso! StatusCode:", resp.StatusCode)
-	} else {
-		fmt.Println("Site:", site, "-> Fora do ar! StatusCode:", resp.StatusCode)
+	// var resp *http.Response
+	for _, site := range sites {
+		resp, _ := http.Get(site)
+
+		if resp.StatusCode == 200 {
+			fmt.Println("Site:", site, "-> Carregado com sucesso! StatusCode:", resp.StatusCode)
+		} else {
+			fmt.Println("Site:", site, "-> Fora do ar! StatusCode:", resp.StatusCode)
+		}
 	}
+
 }

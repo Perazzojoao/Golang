@@ -189,3 +189,42 @@ Existem mais de uma forma de ler arquivos txt. Cada método resulta em diferente
         }
 
       #### Obs: Ao abrirmos uma conexão com um arquivo, é boa prática fechar-la ao final: `<file>.Close()`
+
+## Escrever em arquivos txt
+
+**Abrindo conexão:** `os.OpenFile("<path>", <flags>, permission_code)`
+
+- **path:** Caminho do arquivo
+
+- **flags:** Operações a serem realizadas pela conexão
+
+- **permission_code:** Código de permissões do sistema (Geralmente usamos 0666)
+
+**Sintaxe:** `file`, `err` := `os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE, 0666)`
+
+Para escrevermos no arquivo utilizamos: `file.WriteString()`
+
+**Ex:**
+
+```
+  func registraLogs(i int, site string, status bool) {
+    file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE, 0666)
+
+    if err != nil {
+      fmt.Println("Erro ao escrever em arquivo -> Erro:", err)
+    }
+
+    file.WriteString(time.Now().Format("02/01/2006 15:04:05 - "))  -> Registrando a data atual
+    file.WriteString("Site " + strconv.FormatInt(int64(i+1), 10) + ": ")
+
+    if status == true {
+      file.WriteString(site + " -> Site online\n")
+    } else {
+      file.WriteString(site + " -> Site offline\n")
+    }
+    if i == monitoramentos+1 {
+      file.WriteString("\n")
+    }
+    file.Close()
+  }
+```

@@ -140,8 +140,52 @@ Ao criarmos um slice, a linguagem cria um array de `3 posições por padrão`. C
 
 #### Funções slice
 
-1.  **`append(<slice>, novo_ítem)`:** retorna um novo slice com o ítem adicionado.
+1.  `append(<slice>, novo_ítem)`: retorna um novo slice com o ítem adicionado.
 
     **Ex:**
 
         exemploSlice = append(exemploSlice, "Hello")
+
+## Ler arquivos txt
+
+Existem mais de uma forma de ler arquivos txt. Cada método resulta em diferentes possibilidades de manipulação.
+
+1.  **Ler arquivo inteiro:** `os.ReadFile("<path>")` -> Apenas leitura
+
+2.  **Abrir conexão:** `os.Open("<path>")`
+
+      **Sintaxe:** `file`, `err` := `os.Open("arquivo.txt")`
+
+      **Criar leitor:** `leitor` := `bufio.NewReader(file)`
+
+      **Ler linha por linha:** `linha`, `err` := `leitor.ReadString('<fim_linha>')`
+
+      **Ex:**
+
+        func lerSites() []string {
+          file, err := os.Open("sites.txt")
+
+          if err != nil {
+            fmt.Println("Ocorreu um erro ->", err)
+          }
+
+          leitor := bufio.NewReader(file)
+
+          var lista []string
+          for {
+            linha, err := leitor.ReadString('\n')
+
+            if err != nil {
+              if err == io.EOF {
+                break
+              }
+              fmt.Println("Ocorreu um erro ->", err)
+            }
+            linha = strings.TrimSpace(linha) -> Método de string para remover espaços em branco
+            lista = append(lista, linha)
+          }
+          file.Close()
+          return lista
+        }
+
+      #### Obs: Ao abrirmos uma conexão com um arquivo, é boa prática fechar-la ao final: `<file>.Close()`

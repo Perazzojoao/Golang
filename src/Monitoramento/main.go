@@ -1,9 +1,18 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"strings"
+	"time"
+)
+
+const (
+	monitoramentos = 3
+	delay          = 5
 )
 
 func main() {
@@ -58,18 +67,70 @@ func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
 	println()
 
-	sites := []string{"https://random-status-code.herokuapp.com/",
-		"https://www.alura.com.br", "https://www.caelum.com.br"}
+	sites := lerSites()
 
-	// var resp *http.Response
-	for _, site := range sites {
-		resp, _ := http.Get(site)
-
-		if resp.StatusCode == 200 {
-			fmt.Println("Site:", site, "-> Carregado com sucesso! StatusCode:", resp.StatusCode)
-		} else {
-			fmt.Println("Site:", site, "-> Fora do ar! StatusCode:", resp.StatusCode)
+	for i := 0; i < monitoramentos; i++ {
+		for i, site := range sites {
+			testaSite(i, site)
 		}
+
+		if i < monitoramentos-1 {
+			time.Sleep(delay * time.Second)
+		}
+		println()
+	}
+}
+
+func lerSites() []string {
+	file, err := os.Open("sites.txt")
+	// file, err := os.ReadFile("sites.txt")
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro ->", err)
 	}
 
+	leitor := bufio.NewReader(file)
+
+	var lista []string
+	for {
+		linha, err := leitor.ReadString('\n')
+
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			fmt.Println("Ocorreu um erro ->", err)
+		}
+		linha = strings.TrimSpace(linha)
+		lista = append(lista, linha)
+	}
+	file.Close()
+	return lista
+}
+
+func testaSite(i int, site string) {
+	resp, err := http.Get(site)
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro ->", err)
+	}
+
+	fmt.Print("Site ", i+1, ": ")
+	if resp.StatusCode == 200 {
+		registraLogs(site, true)
+		fmt.Println(site, "-> Carregado com sucesso! StatusCode:", resp.StatusCode)
+	} else {
+		registraLogs(site, false)
+		fmt.Println(site, "-> Fora do ar! StatusCode:", resp.StatusCode)
+	}
+}
+
+func registraLogs(site string, status bool) {
+	file, err := os.OpenFile("logs.txt", os.O_RDWR|os.O_CREATE, 0666)
+
+	if err != nil {
+		fmt.Println("Erro ao escrever em arquivo -> Erro:", err)
+	}
+
+	fmt.Println(file)
 }

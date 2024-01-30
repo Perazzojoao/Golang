@@ -159,6 +159,18 @@ Existem mais de uma forma de ler arquivos txt. Cada método resulta em diferente
 
 1.  **Ler arquivo inteiro:** `os.ReadFile("<path>")` -> Apenas leitura
 
+    **Ex:** 
+
+    ```
+      file, err := os.ReadFile(logsPath)
+
+      if err != nil {
+        fmt.Println("Incapaz de abrir o arquivo: logs.txt -> Erro:", err)
+      }
+
+      fmt.Println(string(file)) -> Converte []bites em string
+    ```    
+
 2.  **Abrir conexão:** `os.Open("<path>")`
 
       **Sintaxe:** `file`, `err` := `os.Open("arquivo.txt")`

@@ -28,8 +28,7 @@
 - **int**
   - **subtipo:** int8, int16, int32, int64
 
-- **float**
-  - **subtipo:** float8, float16, float32, float64
+- **float32 ou float64**
 
 - **bool**
 

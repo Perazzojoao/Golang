@@ -146,6 +146,13 @@ Ao criarmos um slice, a linguagem cria um array de `3 posições por padrão`. C
 
         exemploSlice = append(exemploSlice, "Hello")
 
+## Requisições http
+O GO possúi um pacote padrão para realizar requisições http: `http`
+
+- **GET:** `resp`, `err` := `http.Get(<path>)`
+
+A resposta contém todas as informações recebidas pela requisição, sendo possível acessá-las.
+
 ## Ler arquivos txt
 
 Existem mais de uma forma de ler arquivos txt. Cada método resulta em diferentes possibilidades de manipulação.

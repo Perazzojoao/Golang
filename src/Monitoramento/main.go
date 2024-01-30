@@ -9,11 +9,13 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
 )
 
 const (
 	monitoramentos = 3
 	delay          = 5
+	logsPath = "logs/logs.txt"
 )
 
 func main() {
@@ -127,7 +129,7 @@ func testaSite(i int, site string) {
 }
 
 func registraLogs(i int, site string, status bool) {
-	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE, 0666)
+	file, err := os.OpenFile(logsPath, os.O_APPEND|os.O_CREATE, 0666)
 
 	if err != nil {
 		fmt.Println("Erro ao escrever em arquivo -> Erro:", err)
@@ -151,7 +153,7 @@ func exibeLogs() {
 	fmt.Println("Exibindo Logs...")
 	println()
 
-	file, err := os.Open("logs.txt")
+	file, err := os.Open(logsPath)
 
 	if err != nil {
 		fmt.Println("Incapaz de abrir o arquivo: logs.txt -> Erro:", err)

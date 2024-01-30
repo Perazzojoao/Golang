@@ -1,0 +1,18 @@
+30/01/2024 16:44:42 - Site 1: https://random-status-code.herokuapp.com -> Site offline
+30/01/2024 16:44:42 - Site 2: https://www.alura.com.br -> Site online
+30/01/2024 16:44:44 - Site 3: https://www.caelum.com.br -> Site online
+30/01/2024 16:44:45 - Site 4: https://www.g1.com.br -> Site online
+30/01/2024 16:44:45 - Site 5: https://www.unipe.com.br -> Site online
+
+30/01/2024 16:44:51 - Site 1: https://random-status-code.herokuapp.com -> Site offline
+30/01/2024 16:44:52 - Site 2: https://www.alura.com.br -> Site online
+30/01/2024 16:44:53 - Site 3: https://www.caelum.com.br -> Site online
+30/01/2024 16:44:53 - Site 4: https://www.g1.com.br -> Site online
+30/01/2024 16:44:53 - Site 5: https://www.unipe.com.br -> Site online
+
+30/01/2024 16:44:59 - Site 1: https://random-status-code.herokuapp.com -> Site offline
+30/01/2024 16:44:59 - Site 2: https://www.alura.com.br -> Site online
+30/01/2024 16:45:00 - Site 3: https://www.caelum.com.br -> Site online
+30/01/2024 16:45:00 - Site 4: https://www.g1.com.br -> Site online
+30/01/2024 16:45:00 - Site 5: https://www.unipe.com.br -> Site online
+

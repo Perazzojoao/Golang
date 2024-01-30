@@ -25,8 +25,7 @@
 ## Tipos
 - **string**
 
-- **int**
-  - **subtipo:** int8, int16, int32, int64
+- **int, int8, int16, int32, int64**
 
 - **float32 ou float64**
 

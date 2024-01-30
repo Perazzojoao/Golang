@@ -9,13 +9,12 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
 )
 
 const (
 	monitoramentos = 3
 	delay          = 5
-	logsPath = "logs/logs.txt"
+	logsPath       = "logs/logs.txt"
 )
 
 func main() {
@@ -153,22 +152,11 @@ func exibeLogs() {
 	fmt.Println("Exibindo Logs...")
 	println()
 
-	file, err := os.Open(logsPath)
+	file, err := os.ReadFile(logsPath)
 
 	if err != nil {
 		fmt.Println("Incapaz de abrir o arquivo: logs.txt -> Erro:", err)
 	}
 
-	leitor := bufio.NewReader(file)
-
-	for {
-		linha, err := leitor.ReadString('\n')
-
-		if err == io.EOF {
-			break
-		}
-		linha = strings.TrimSpace(linha)
-		fmt.Println(linha)
-	}
-	file.Close()
+	fmt.Println(string(file))
 }

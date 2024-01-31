@@ -64,18 +64,6 @@
 
 **Comando:** `fmt.Scanf("%d", &<var>)` ou `fmt.Scan(&<var>)`
 
-## Funções
-
-**Sintaxe:** func `<nome>`(`<param>` `type`) `type retorno` {. . .}
-
-**Obs:** Deixar o retorno em branco implica em tipo `void`.
-
-### Retornando mais de um valor:
-
-**Sintaxe:** func `<nome>`(`<param>` `type`) (`type1`, `type2`, ...) {return var1, var2, . . .}
-
-**Recebendo os valores:** var1, var2 := retornaDois()
-
 ## for
 
 Na linguagem go não existe o comando `while`. Ao invés disso, utilizamos o `for` sem nenhum parâmetro.
@@ -87,7 +75,6 @@ Na linguagem go não existe o comando `while`. Ao invés disso, utilizamos o `fo
 
   }
 ```
-
 Sendo assim, geramos um loop infinito. Para interromper o programa: `os.Exit(<código>)` -> `0` para bem sucedido ou `-1` para mau sucedido.
 
 ### for padrão
@@ -111,6 +98,41 @@ Sendo assim, geramos um loop infinito. Para interromper o programa: `os.Exit(<c�
 		}
 	}
 ```
+
+## Funções
+
+**Sintaxe:** func `<nome>`(`<param>` `type`) `type retorno` {. . .}
+
+**Obs:** Deixar o retorno em branco implica em tipo `void`.
+
+### Parâmetros indeterminados
+Funções em GO podem receber uma quantidade indeterminada de parâmetros. Para isso utilize: func <nome_> (<nome_param> `...<type>`) {. . .}
+
+**Ex:**
+
+```
+  func somatorio(numeros ...int) int {
+    resultadoDaSoma := 0
+    for _, numero := range numeros {
+      resultadoDaSoma += numero
+    }
+    return resultadoDaSoma
+  }
+
+  func main() {
+    fmt.Println(Somando(1))
+    fmt.Println(Somando(1,1))
+    fmt.Println(Somando(1,1,1))
+    fmt.Println(Somando(1,1,2,4))
+  }
+```
+Dessa forma, `numeros ...int` é equivalente a `numeros []int`.
+
+### Retornando mais de um valor:
+
+**Sintaxe:** func `<nome>`(`<param>` `type`) (`type1`, `type2`, ...) {return var1, var2, . . .}
+
+**Recebendo os valores:** var1, var2 := retornaDois()
 
 ## Slice (Array)
 
@@ -207,6 +229,32 @@ Criamos um objeto a partir de uma struc utilizando o comando: `<nome_struct> {..
     cliente02 := ContaCorrente{"Guilherme", 442, 3302, 3242.52}
   }
 ```
+
+### Adicionando funções à struct
+Para adicionar funções e métodos à um determinado struct utilizamos: func `(<var> <struct>)` <nome_func>() {. . .}
+
+**Ex:**
+
+```
+  func (c *ContaCorrente) sacar(valorSaque float64) {
+    .
+    .
+    .
+  }
+```
+Temos duas formas de referenciar uma função à um struct: `com ponteiros` ou `forma padrão`.
+
+1. `Ponteiros`: (<var_> *<struct_>)
+
+    - Quando queremos `alterar` valores de variáveis da struct `de forma persistente`.
+    - Quando queremos `otimizar` o `uso de memória` do programa.
+
+2. `Forma padrão`: (<var_> <struct_>)
+
+    - Quando queremos apenas `visualizar` valores da struct.
+    - Quando `não` temos a intenção de alterar valores da struct `de forma persistente`.
+
+##### Obs: Ponteiros agem sobre o endereço de memória da variável, alterando seu valor original em qualquer escopo. A forma padrão utiliza cópias das variáveis, alterando apenas as cópias. Com isso, ponteiros alteram o valor original e economizam memória, enquanto a forma padrão mantém as alterações no próprio escopo da função enquanto utiliza mais memória. 
 
 ## Ler arquivos txt
 

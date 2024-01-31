@@ -25,7 +25,7 @@ func (c *ContaCorrente) Sacar(valorSaque float64) {
 	println()
 }
 
-func (c *ContaCorrente) depositar(valor float64) error {
+func (c *ContaCorrente) Depositar(valor float64) error {
 	if valor > 0 {
 		c.Saldo += valor
 		return nil

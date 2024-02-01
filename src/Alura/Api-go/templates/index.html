@@ -1,0 +1,43 @@
+{{define "Index"}}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>Api-go</title>
+	</head>
+	<body class="bg-zinc-900 text-gray-200 p-5">
+		<h1 class="text-3xl font-bold underline">Hello World!</h1>
+		
+		<div class="flex justify-center pt-[100px] text-left text-sm sm:text-base">
+			<table class=" bg-zinc-800 rounded-lg w-full sm:max-w-5xl border-separate border-spacing-1 sm:border-spacing-2">
+				<thead class="border-zinc-600 border-b-2">
+					<tr>
+						<th>Nome</th>
+						<th class="w-2xl">Descrição</th>
+						<th>Preço</th>
+						<th>Estoque</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="border-zinc-700 border-b ">
+						<td>Camiseta</td>
+						<td>Bem bonita</td>
+						<td>29,99</td>
+						<td>10</td>
+					</tr>
+					<tr class="border-zinc-700 border-b ">
+						<td>Notebook</td>
+						<td>Muito rápido</td>
+						<td>3999,99</td>
+						<td>2</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
+
+{{end}}

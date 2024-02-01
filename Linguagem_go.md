@@ -168,13 +168,6 @@ Ao criarmos um slice, a linguagem cria um array de `3 posições por padrão`. C
 
         exemploSlice = append(exemploSlice, "Hello")
 
-## Requisições http
-O GO possúi um pacote padrão para realizar requisições http: `http`
-
-- **GET:** `resp`, `err` := `http.Get(<path>)`
-
-A resposta contém todas as informações recebidas pela requisição, sendo possível acessá-las.
-
 ## Structs (Classes)
 Structs são equivalente a classes. Criamos structs para adicionar variáveis e seus respectivos tipos à um objeto.
 
@@ -388,3 +381,49 @@ Para escrevermos no arquivo utilizamos: `file.WriteString()`
     file.Close()
   }
 ```
+
+## Requisições http
+O GO possúi um pacote padrão para realizar requisições http: `http`
+
+- **GET:** `resp`, `err` := `http.Get(<path>)`
+
+A resposta contém todas as informações recebidas pela requisição, sendo possível acessá-las.
+
+## API
+A linguagem GO possúi algumas funções padrões para a criação de servidores web
+
+### Criação:
+1. **Inicialização de servidor**
+
+    **Sintaxe:** `http.ListenAndServe("<porta>", <handler_func>)`
+
+    Esse comando inicia um servidor http na porta indicada, e utiliza a "handler_func" para gerenciar as requisições ao servidor.
+
+    **Ex:**
+
+        http.ListenAndServe(":8000", nil)
+    
+    Passamos "nil" ao invés de uma "handler_func", quando não queremos gerenciar as requisições ao servidor.
+
+2. **Rotas**
+
+    **Sintaxe:** `http.HandleFunc("<rota>", <handler_func>)`
+
+    A "handler_func", nesse caso, é a função que será chamada ao fazermos uma requisição na rota indicada, assim, a função é responsável por retornar uma resposta.
+
+    **Ex:**
+    
+    ```
+    http.HandleFunc("/", index)
+    ```
+    ```
+    var temp = template.Must(template.ParseGlob("templates/*.html"))
+
+    func index(w http.ResponseWriter, r *http.Request) {
+      temp.ExecuteTemplate(w, "Index", nil)
+    }
+    ```
+
+    A func `"index"` nesse caso, é responsável por `executar um template (html)` dentro da `rota raíz ("/")`.
+    
+    A variável `temp` recebe a leitura de todos os templates na pasta indicada.

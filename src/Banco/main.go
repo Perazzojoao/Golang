@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	cliente1 := clientes.Titular{Nome: "João Victor", Cpf: 70242452477, Profisao: "Desenvolvedor"}
-	conta1 := contas.NewContaCorrente(cliente1, 123, 123456, 11000)
+	cliente1 := clientes.NewTitular("João Victor", 70242452477, "Desenvolvedor")
+	conta1 := contas.NewContaCorrente(*cliente1, 123, 123456, 11000)
 
 	fmt.Println("Saldo inicial:", conta1.GetSaldo())
 

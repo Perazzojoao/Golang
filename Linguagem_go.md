@@ -254,7 +254,45 @@ Temos duas formas de referenciar uma função à um struct: `com ponteiros` ou `
     - Quando queremos apenas `visualizar` valores da struct.
     - Quando `não` temos a intenção de alterar valores da struct `de forma persistente`.
 
-##### Obs: Ponteiros agem sobre o endereço de memória da variável, alterando seu valor original em qualquer escopo. A forma padrão utiliza cópias das variáveis, alterando apenas as cópias. Com isso, ponteiros alteram o valor original e economizam memória, enquanto a forma padrão mantém as alterações no próprio escopo da função enquanto utiliza mais memória. 
+##### Obs: Ponteiros agem sobre o endereço de memória da variável, alterando seu valor original em qualquer escopo. A forma padrão utiliza cópias das variáveis, alterando apenas as cópias. Com isso, ponteiros alteram o valor original e economizam memória, enquanto a forma padrão mantém as alterações no próprio escopo da função enquanto utiliza mais memória.
+
+## Interfaces
+Interface é uma forma de agrupar structures com base em seus métodos em comum. Sendo assim, duas ou mais structures que compartilham métodos iguais podem ser agrupadas por meio de interfaces.
+
+### Criação
+**Sintaxe:** `type` `<nome>` `interface` {. . .}
+
+**Ex:**
+
+```
+  type Conta interface {
+    GetSaldo() float64
+    Sacar(valorSaque float64)
+    Depositar(valor float64) error
+  }
+```
+Dentro da interface incluimos todas as funções, seus parâmetros e respectivos retornos que queremos englobar. Com isso, qualquer struct que possúa qualquer uma dessas funções como método pode ser acessada.
+
+### Uso
+Para utilizar, precisamos escrever funções que recebam como parâmetro uma interface.
+
+**Ex:**
+
+```
+  func pagarBoleto(conta Conta, valor float64) {
+    conta.Sacar(valor)
+
+    fmt.Println("Boleto pago com sucesso!")
+  }
+```
+Note que a função "pagarBoleto" pede uma "conta" do tipo interface "Conta". Entretanto, aqui passamos uma "conta" do tipo struct:
+
+    pagarBoleto(conta1, 1000)   // conta1 ContaCorrente (struct)
+
+Isso acontece, pois mesmo a variável "conta1" ser uma struct, por compartilhar os métodos com a interface descrita, é englobada pela interface. Com isso, dentro da função "pagarBoleto" podemos acessar o método "Sacar" específico da struct passada.
+
+### Conclusão
+Originalmente, precisaríamos criar uma função específica para cada struct que desejamos trabalhar. Tomando como exemplo a função "pagarBoleto", precisaríamos escrevê-la uma vez para cada tipo de conta que precisemos utilizar, contudo, utilizando interfaces, podemos escrevê-la apenas uma vez e recebermos qualquer conta que precisarmos.
 
 ## Ler arquivos txt
 

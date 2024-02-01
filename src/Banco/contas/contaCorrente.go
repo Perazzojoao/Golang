@@ -5,13 +5,27 @@ import (
 	"fmt"
 
 	c "banco/clientes"
+
 )
 
 type ContaCorrente struct {
-	Titular       c.Titular
-	NumeroAgencia int
-	NumeroConta   int
+	titular       c.Titular
+	numeroAgencia int
+	numeroConta   int
 	saldo         float64
+}
+
+func NewContaCorrente(titularConta c.Titular, numAgencia int, numConta int, saldoInicial float64) *ContaCorrente {
+	o := ContaCorrente{}
+	o.titular = titularConta
+	o.numeroAgencia = numAgencia
+	o.numeroConta = numConta
+	o.saldo = saldoInicial
+	return &o
+}
+
+func (c *ContaCorrente) GetSaldo() float64 {
+	return c.saldo
 }
 
 func (c *ContaCorrente) Sacar(valorSaque float64) {
@@ -41,8 +55,4 @@ func (c *ContaCorrente) Transferir(valor float64, contaDestino *ContaCorrente) (
 		return true, nil
 	}
 	return false, errors.New("Não foi possível realizar a transferência.")
-}
-
-func (c *ContaCorrente) getSaldo() float64 {
-	return c.saldo
 }

@@ -5,20 +5,15 @@ import (
 
 	"banco/clientes"
 	"banco/contas"
-
 )
 
 func main() {
-	clienteBruno := clientes.Titular{
-		Nome:      "Bruno",
-		Cpf:       70142572477,
-		Proffisao: "Programador",
-	}
-	contaBruno := contas.ContaCorrente{
-		Titular:       clienteBruno,
-		NumeroAgencia: 123,
-		NumeroConta:   123456,
-	}
+	cliente1 := clientes.Titular{Nome: "João Victor", Cpf: 70242452477, Profisao: "Desenvolvedor"}
+	conta1 := contas.NewContaCorrente(cliente1, 123, 123456, 11000)
 
-	fmt.Println(contaBruno)
+	fmt.Println("Saldo inicial:", conta1.GetSaldo())
+
+	contas.PagarBoleto(conta1, 1000)
+
+	fmt.Println("Saldo final:", conta1.GetSaldo())
 }

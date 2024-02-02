@@ -427,3 +427,75 @@ A linguagem GO possúi algumas funções padrões para a criação de servidores
     A func `"index"` nesse caso, é responsável por `executar um template (html)` dentro da `rota raíz ("/")`.
     
     A variável `temp` recebe a leitura de todos os templates na pasta indicada.
+
+## Banco de Dados (MySQL):
+Cada banco de dados tem sua própria forma de conexão. Aqui usaremos o MySQL.
+
+### Conexão
+1. **Instalando dependências:** 
+
+    Na pasta da sua aplicação utilize o seguinte comando cli:
+
+       go get -u github.com/go-sql-driver/mysql
+
+    Após isso, adicione a importação necessária:
+
+       import (_ "github.com/go-sql-driver/mysql")
+
+2. **Verificando conexão:**
+
+    Para testar a conexão adicione a seguinte linha de código:
+
+       db, err := sql.Open("mysql", "user:password@method(hostname:port)/dbname")
+    
+    **Ex:**
+
+    ```
+      db, err := sql.Open("mysql", "root:**senhadb**@tcp(localhost:3306)/alura_loja")
+
+      if err != nil {
+        fmt.Println("ERROR -> Fail to validate sql.Open() arguments")
+        panic(err.Error())
+      }
+    ```
+
+    Agora utilize a função `db.Ping()` para testar se a conexão continua aberta.
+
+    **Ex:**
+
+    ```
+      err = db.Ping()
+
+      if err != nil {
+        fmt.Println("ERROR -> Fail to verify connection with db.Ping()")
+        panic(err.Error())
+      }
+    ```
+
+#### Exemplo completo:
+
+```
+  import (
+    "database/sql"
+    "fmt"
+
+    _ "github.com/go-sql-driver/mysql"
+  )
+
+  func conectarDb() *sql.DB {
+    db, err := sql.Open("mysql", "root:**senhadb**@tcp(localhost:3306)/alura_loja")
+
+    if err != nil {
+      fmt.Println("ERROR -> Fail to validate sql.Open() arguments")
+      panic(err.Error())
+    }
+
+    err = db.Ping()
+
+    if err != nil {
+      fmt.Println("ERROR -> Fail to verify connection with db.Ping()")
+      panic(err.Error())
+    }
+    return db
+  }
+```

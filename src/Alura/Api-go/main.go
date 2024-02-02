@@ -31,9 +31,6 @@ func conectarDb() *sql.DB {
 var temp = template.Must(template.ParseGlob("templates/*.html"))
 
 func main() {
-	db := conectarDb()
-	defer db.Close()
-
 	fmt.Println("Servidor online!")
 
 	http.HandleFunc("/", index)
@@ -41,10 +38,36 @@ func main() {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	listaProdutos := produtos.NewProduto("Camiseta", "Confortável", 89, 3)
-	listaProdutos = produtos.NewProduto("Tênis", "Confortável", 39, 12)
-	listaProdutos = produtos.NewProduto("Fone", "Muito bom", 59, 6)
-	listaProdutos = produtos.NewProduto("Notebook", "Muito rápido", 3688.99, 22)
+	db := conectarDb()
+	defer db.Close()
+
+	selectAll, err := db.Query("SELECT * FROM produtos")
+	if err != nil {
+		fmt.Println("ERROR -> Unable to perform a query")
+		fmt.Println(err.Error())
+	}
+
+	var p produtos.Produto
+	listaProdutos := make([]produtos.Produto, 0, 5)
+
+	for selectAll.Next() {
+		var id, estoque int
+		var nome, descricao string
+		var preco float64
+
+		err := selectAll.Scan(&id, &nome, &descricao, &preco, &estoque)
+		if err != nil {
+			fmt.Println("ERROR -> Unable to scan each table line")
+			fmt.Println(err.Error())
+		}
+		p.Id = id
+		p.Nome = nome
+		p.Descricao = descricao
+		p.Preco = preco
+		p.Estoque = estoque
+
+		listaProdutos = append(listaProdutos, p)
+	}
 
 	temp.ExecuteTemplate(w, "Index", listaProdutos)
 }

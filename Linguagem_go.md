@@ -499,3 +499,40 @@ Cada banco de dados tem sua própria forma de conexão. Aqui usaremos o MySQL.
     return db
   }
 ```
+#### Obs: Após abrir uma conexão com o banco de dados, é de boa prática feixá-la ao final de tudo: `defer db.Close`
+
+### Receber valores
+Para realizar uma operação SQL utilize o comando: `db.Query("<comando_SQL>")`
+
+**Ex:**
+
+```
+  selectAll, err := db.Query("SELECT * FROM produtos")
+
+  if err != nil {
+    fmt.Println("ERROR -> Unable to perform a query")
+    fmt.Println(err.Error())
+  }
+```
+
+Esse comando irá retortnar todas as linhas da tabela. Para ter acesso a cada linha, devemos iterá-lo: `for selectAll.Next {...}`
+
+Após isso, devemos criar variáveis para receber cada item da linha iterada da tabela e inserir seus respectivos endereços de memória na função `selectAll.Scan(<var> ...any)`.
+
+**Ex:**
+
+```
+for selectAll.Next() {
+  var id, estoque int
+  var nome, descricao string
+  var preco float64
+
+  err := selectAll.Scan(&id, &nome, &descricao, &preco, &estoque)
+  if err != nil {
+    fmt.Println("ERROR -> Unable to scan each table line")
+    fmt.Println(err.Error())
+  }
+}
+```
+
+Com isso, cada variável gardará automaticamente o valor de cada dado escaneado pela função

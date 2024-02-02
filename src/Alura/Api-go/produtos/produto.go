@@ -1,38 +1,21 @@
 package produtos
 
-import "slices"
-
 type Produto struct {
+	Id        int
 	Nome      string
 	Descricao string
 	Preco     float64
 	Estoque   int
 }
 
-var produtos = []Produto{}
+func NewProduto(nome string, descricao string, preco float64, estoque int) *Produto {
+	return &Produto{0, nome, descricao, preco, estoque}
+}
 
-func NewProduto(nome string, descricao string, preco float64, estoque int) *[]Produto {
-	if slices.Contains[[]Produto](produtos, Produto{nome, descricao, preco, estoque}) {
-		return &produtos
+func NewListaProduto(listaProdutos ...Produto) *[]Produto {
+	produtos := []Produto{}
+	for _, produto := range listaProdutos {
+		produtos = append(produtos, produto)
 	}
-
-	produtos = append(produtos, Produto{nome, descricao, preco, estoque})
-
 	return &produtos
-}
-
-func (p *Produto) GetNome() string {
-	return p.Nome
-}
-
-func (p *Produto) GetDescricao() string {
-	return p.Descricao
-}
-
-func (p *Produto) GetPreco() float64 {
-	return p.Preco
-}
-
-func (p *Produto) GetEstoque() int {
-	return p.Estoque
 }

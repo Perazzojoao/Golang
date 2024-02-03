@@ -9,8 +9,12 @@ import (
 )
 
 func main() {
-	fmt.Println("Servidor online!")
-
 	routes.CarregaRotas()
-	http.ListenAndServe(":8000", nil)
+
+	fmt.Println("Starting server on port 8000.")
+	err := http.ListenAndServe(":8000", nil)
+	if err != nil {
+		fmt.Println("ERROR -> Fail to start server")
+		panic(err.Error())
+	}
 }

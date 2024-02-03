@@ -501,8 +501,8 @@ Cada banco de dados tem sua própria forma de conexão. Aqui usaremos o MySQL.
 ```
 #### Obs: Após abrir uma conexão com o banco de dados, é de boa prática feixá-la ao final de tudo: `defer db.Close`
 
-### Receber valores
-Para realizar uma operação SQL utilize o comando: `db.Query("<comando_SQL>")`
+### SELECT
+Para realizar uma operação SQL SELECT utilize o comando: `db.Query("<comando_SQL>")`
 
 **Ex:**
 
@@ -536,3 +536,32 @@ for selectAll.Next() {
 ```
 
 Com isso, cada variável gardará automaticamente o valor de cada dado escaneado pela função
+
+### INSERT
+Para realizar uma operação SQL INSERT utilize os comandos: `db.Prepare("<stmt>")` e `Exec(...<var>)`
+
+1. **Prepare( ):** Serve para validar comandos SQL. Recebe o comando SQL como parâmetro e retornar o argumento (stmt) e um erro (err). Se houver algum erro no código SQL, o erro será guardado pelo err.
+
+  - **Ex:**
+
+    ```
+    stmt, err := db.Prepare("INSERT INTO alura_loja.produtos (nome, descricao, preco, estoque) VALUES (?, ?, ?, ?)")
+    if err != nil {
+      fmt.Println("ERROR -> Wrong insert arguments.")
+      fmt.Println(err.Error())
+      return
+    }
+    ```
+    Note que as "?" é onde as variáveis passadas no Exec( ) serão alocadas. 
+    
+    O stmt gerado pode ser reutilizado em futuras requisições. Para fechar a stmt atual utilize: `stmt.Close()`.
+
+2. **Exec( ):** Serve para executar um comando ou stmt previamente definido. Nele, passamos como parâmetro todas as variáveis que utilizaremos no comando SQL.
+
+  - **Ex:**
+
+    ```
+    stmt.Exec(nome, descricao, preco, estoque)
+    ```
+
+#### Obs: Após a execução do INSERT devemos lembrar de fechar a conexão com o DB: `db.Close()`.

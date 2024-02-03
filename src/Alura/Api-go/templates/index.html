@@ -12,10 +12,12 @@
 		<nav class="flex justify-between items-center">
 			<a href="/" class="text-2xl sm:text-3xl font-bold">Alura loja</a>
 		</nav>
-		
+
 		<div class="flex justify-center pt-[100px] text-left text-sm sm:text-base">
-			<div class="bg-zinc-800 rounded-lg w-full h-auto p-1 sm:p-5 shadow-lg shadow-black">
-				<table class=" bg-zinc-800  w-full ">
+			<div
+				class="flex flex-col gap-1 sm:gap-3 bg-zinc-800 rounded-lg w-full h-auto p-1 sm:p-5 shadow-lg shadow-black"
+			>
+				<table class="bg-zinc-800 w-full h-auto">
 					<thead class="border-zinc-600 border-b-2 min-h-[40px]">
 						<tr>
 							<th>ID</th>
@@ -37,6 +39,11 @@
 						{{end}}
 					</tbody>
 				</table>
+				<a
+					href="/new"
+					class="bg-blue-700 px-2 sm:px-4 py-2 w-fit text-xs sm:text-base rounded-lg hover:bg-blue-600"
+					>Adicionar produto</a
+				>
 			</div>
 		</div>
 	</body>

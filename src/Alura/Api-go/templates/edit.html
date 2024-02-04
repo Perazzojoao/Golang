@@ -1,4 +1,4 @@
-{{define "New"}}
+{{define "Edit"}}
 
 {{template "_head"}}
 
@@ -8,17 +8,19 @@
 		</nav>
 
 		<div class="bg-zinc-800 px-3 py-10 sm:py-16">
-			<h1 class="text-4xl sm:text-5xl font-semibold mb-2 sm:mb-4">Novo produto</h1>
-			<h2 class="text-xl sm:text-3xl">Insira os detalhes</h2>
+			<h1 class="text-4xl sm:text-5xl font-semibold mb-2 sm:mb-4">Editar produto</h1>
+			<h2 class="text-xl sm:text-3xl">Atualize os detalhes</h2>
 		</div>
 
 		<div class="flex justify-center pt-[30px] text-left text-sm sm:text-base">
-			<form class="flex flex-col gap-5 w-full h-auto" method="POST" action="insert">
+			<form class="flex flex-col gap-5 w-full h-auto" method="POST" action="update">
+				<input type="hidden" name="id" value="{{.Id}}">
 				<div class="sm:max-w-[70%] xl:max-w-[60%] flex flex-col gap-1">
 					<label for="nome" class="font-semibold">Nome:</label>
 					<input
 						name="nome"
 						type="text"
+						value="{{.Nome}}"
 						class="w-full h-8 rounded-sm text-zinc-900 font-semibold"
 						required
 					/>
@@ -28,6 +30,7 @@
 					<input
 						name="descricao"
 						type="text"
+						value="{{.Descricao}}"
 						class="w-full h-8 rounded-sm text-zinc-900 font-semibold"
 					/>
 				</div>
@@ -35,7 +38,8 @@
 					<label for="preco" class="font-semibold">Preço:</label>
 					<input
 						name="preco"
-						type="number"
+						type="text"
+						value="{{.Preco}}"
 						class="w-full h-8 rounded-sm text-zinc-900 font-semibold"
 						required
 					/>
@@ -45,6 +49,7 @@
 					<input
 						name="estoque"
 						type="number"
+						value="{{.Estoque}}"
 						class="w-full h-8 rounded-sm text-zinc-900 font-semibold"
 						required
 					/>
@@ -54,7 +59,7 @@
 						type="submit"
 						class="bg-green-700 hover:bg-green-600 px-2 sm:px-4 py-1 sm:py-2 rounded-sm"
 					>
-						Salvar
+						Atualizar
 					</button>
 					<a href="/" class="bg-blue-700 hover:bg-blue-600 px-2 sm:px-4 py-1 sm:py-2 rounded-sm"
 						>Voltar</a
